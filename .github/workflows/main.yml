@@ -1,0 +1,13 @@
+name: Lint/Test
+on: [push]
+jobs:
+  lint_test:
+    runs-on: ubuntu-latest
+    container: python@sha256:03dbfdaf2cad49d26ff45dda0fb12db9d087282303e0675315ff14cda0bb6955  # 3.10-slim-bullseye
+    steps:
+      - uses: actions/checkout@v2
+      - run: apt update -y && apt install -y make
+      - run: echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - run: pip install --user poetry==1.1.13
+      - run: make requirements
+      - run: make lint
