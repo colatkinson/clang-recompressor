@@ -11,3 +11,4 @@ jobs:
       - run: pip install --user poetry==1.1.13
       - run: make requirements
       - run: make lint
+      - run: make run
