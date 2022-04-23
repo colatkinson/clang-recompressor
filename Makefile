@@ -20,3 +20,7 @@ fmt:
 run:
 	poetry run python main.py out
 .PHONY: run
+
+show-hashes:
+	cat out/*.sha256
+.PHONY: show-hashes
