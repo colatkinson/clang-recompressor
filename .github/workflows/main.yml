@@ -1,7 +1,10 @@
 name: Lint/Test
 on:
   pull_request:
-    types: [opened, reopened]
+    types: [opened, synchronize, reopened]
+  push:
+    branches:
+      - master
 jobs:
   lint_test:
     runs-on: ubuntu-latest
@@ -24,3 +27,8 @@ jobs:
         run: |
           make run
           make show-hashes
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: built-packages
+          path: out
