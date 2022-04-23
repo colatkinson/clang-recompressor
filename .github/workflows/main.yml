@@ -1,5 +1,7 @@
 name: Lint/Test
-on: [push]
+on:
+  pull_request:
+    types: [opened, reopened]
 jobs:
   lint_test:
     runs-on: ubuntu-latest
@@ -12,3 +14,4 @@ jobs:
       - run: make requirements
       - run: make lint
       - run: make run
+      - run: make show-hashes
