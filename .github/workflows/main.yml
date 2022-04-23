@@ -10,12 +10,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Fix $PATH
-        run: echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+        run: echo "$HOME/.poetry/bin" >> "$GITHUB_PATH"
       - name: Install dependencies
         run: |
           apt update -y
-          apt install -y make
-          pip install --user poetry==1.1.13
+          apt install -y make curl
+          curl https://raw.githubusercontent.com/python-poetry/poetry/68649946fe09d52ed1a5844bda6690ba6327c408/get-poetry.py --output get-poetry.py
+          python get-poetry.py --version=1.1.13 --yes
           make requirements
       - name: Lint
         run: make lint
