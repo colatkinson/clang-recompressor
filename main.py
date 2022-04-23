@@ -75,7 +75,7 @@ def recompress(url: str, in_file: BinaryIO, out_dir: str) -> str:
 
     orig_name = os.path.basename(parsed.path)
     just_tar, _ = os.path.splitext(orig_name)
-    zstd_name = just_tar + ".zstd"
+    zstd_name = just_tar + ".zst"
 
     os.makedirs(out_dir, exist_ok=True)
     out_file_path = os.path.join(out_dir, zstd_name)
