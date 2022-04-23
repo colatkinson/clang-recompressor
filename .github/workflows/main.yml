@@ -7,11 +7,19 @@ jobs:
     runs-on: ubuntu-latest
     container: python@sha256:03dbfdaf2cad49d26ff45dda0fb12db9d087282303e0675315ff14cda0bb6955  # 3.10-slim-bullseye
     steps:
-      - uses: actions/checkout@v2
-      - run: apt update -y && apt install -y make
-      - run: echo "$HOME/.local/bin" >> "$GITHUB_PATH"
-      - run: pip install --user poetry==1.1.13
-      - run: make requirements
-      - run: make lint
-      - run: make run
-      - run: make show-hashes
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Fix $PATH
+        run: echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Install dependencies
+        run: |
+          apt update -y
+          apt install -y make
+          pip install --user poetry==1.1.13
+          make requirements
+      - name: Lint
+        run: make lint
+      - name: Execute script
+        run: |
+          make run
+          make show-hashes
