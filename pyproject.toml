@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "recompressor"
+version = "0.1.0"
+description = ""
+authors = ["Colin Atkinson <public@colatkinson.site>"]
+license = "GPL-3.0-only"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+aiohttp = "^3.8.1"
+zstandard = "^0.17.0"
+
+[tool.poetry.dev-dependencies]
+mypy = "^0.942"
+pylint = "^2.13.7"
+black = "^22.3.0"
+isort = "^5.10.1"
+
+[tool.isort]
+profile = "black"
+
+[tool.pylint.messages_control]
+disable = [
+  "missing-docstring",
+  "line-too-long",
+]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
